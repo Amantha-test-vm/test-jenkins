@@ -3,8 +3,10 @@ pipeline {
 
     stages {
         stage ("who-am-i") {
-            echo 'My name is Amantha'
-            echo 'This is my first pipeline'
+            steps {
+                echo 'My name is Amantha'
+                echo 'This is my first pipeline'
+            }
         }
 
         stage ("build") {
