@@ -1,0 +1,36 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage ("who-am-i") {
+            echo 'My name is Amantha'
+            echo 'This is my first pipeline'
+        }
+
+        stage ("build") {
+            steps {
+                // sh 'npm install'
+                echo 'building the application'
+            }
+        }
+
+           stage ("test") {
+            steps {
+                echo 'testing the application'
+            }
+        }
+
+           stage ("deploy") {
+            steps {
+                echo 'deploying the application'
+                
+            }
+        }
+
+           stage ("validation") {
+            steps {
+                echo 'validation the application'
+            }
+        }
+    }
+}
