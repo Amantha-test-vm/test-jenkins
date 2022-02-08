@@ -23,10 +23,10 @@ pipeline {
                        BRANCH_NAME == 'stage'
                    }
 
-                   stage {
-                       echo 'This is srtage branch'
-                       echo '1'
-                   }
+//                    stage {
+//                        echo 'This is srtage branch'
+//                        echo '1'
+//                    }
                }
 
             steps {
