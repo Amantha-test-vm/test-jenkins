@@ -36,14 +36,14 @@ pipeline {
             }
         }
 
-           stage ("test") {
+         stage ("test") {
 
             //    when {
             //        expression {
             //            BRANCH_NAME == 'stage'
             //        }
 
-                   steps {
+             steps {
                        echo 'This is srtage branch'
                        echo '1'
                    }
@@ -53,11 +53,11 @@ pipeline {
                 echo '2'
             }
 
-            when {
-                expression {
-                    params.executeTest == true
-                }
-            }
+//             when {
+//                 expression {
+//                     params.executeTest == true
+//                 }
+//             }
 
             steps {
                 echo 'npm install\n Installing npm \n....................\n ................'
