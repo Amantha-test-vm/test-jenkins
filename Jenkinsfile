@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         NEW_VERSION = '1.0.1'
-        SERVER_CREDENTIALS = credentpials('server-user-cred')
+        SERVER_CREDENTIALS = credentials('server-user-cred')
     }
 
     // tools {
@@ -15,7 +15,7 @@ pipeline {
     parameters {
         string(name:'Admin', description: 'this is a parameter')
         choice(name: 'VERSION',choices : ['1.0.1', '1.0.2', '1.0.3', '1.0.4']) //this will act like build with parameters
-        booleanParam(name: 'executeTest' , defultValue: true, description: '')
+        // booleanParam(name: 'executeTest' , defultValue: true, description: '')
     }
     
 
@@ -32,26 +32,26 @@ pipeline {
             steps {
                 // sh 'npm install'
                 echo 'building the application'
-                sh 'maven install'
+                echo 'maven install'
             }
         }
 
-         stage ("test") {
+        //  stage ("test") {
 
             //    when {
             //        expression {
             //            BRANCH_NAME == 'stage'
             //        }
 
-             steps {
-                       echo 'This is srtage branch'
-                       echo '1'
-                   }
+            //  steps {
+            //           echo 'This is srtage branch'
+            //           echo '1'
+            //       }
 
-            steps {
-                echo 'testing the application'
-                echo '2'
-            }
+            // steps {
+            //     echo 'testing the application'
+            //     echo '2'
+            // }
 
 //             when {
 //                 expression {
@@ -59,16 +59,16 @@ pipeline {
 //                 }
 //             }
 
-            steps {
-                echo 'npm install\n Installing npm \n....................\n ................'
-            }
-        }
+            // steps {
+            //     // echo 'npm install\n Installing npm \n....................\n ................'
+            // }
+        // }
 
            stage ("deploy") {
             steps {
                 echo 'deploying the application'
                 echo "Deploying with ${SERVER_CREDENTIALS}"
-                sh "some scripts ${SERVER_CREDENTIALS}"
+                echo "some scripts ${SERVER_CREDENTIALS}"
                 
             }
         }
@@ -96,3 +96,4 @@ pipeline {
         }
     }
 }
+
