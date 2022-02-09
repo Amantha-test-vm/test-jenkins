@@ -1,9 +1,27 @@
 pipeline {
     agent any 
 
+    environment {
+        NEW_VERSION = '1.0.1'
+        SERVER_CREDENTIALS = credentpials('server-user-cred')
+    }
+
+    // tools {
+    //     // maven 'Maven'
+    //     // gradel
+
+    // }
+
+    parameters {
+        string(deployerName:'Admin', description: 'this is a parameter')
+        booleanParam()
+    }
+    
+
     stages {
         stage ("who-am-i") {
             steps {
+                echo "deployer name ${params.deployerName}"
                 echo 'My name is Amantha'
                 echo 'This is my first pipeline'
             }
@@ -13,6 +31,7 @@ pipeline {
             steps {
                 // sh 'npm install'
                 echo 'building the application'
+                sh 'maven install'
             }
         }
 
@@ -38,6 +57,8 @@ pipeline {
            stage ("deploy") {
             steps {
                 echo 'deploying the application'
+                echo "Deploying with ${SERVER_CREDENTIALS}"
+                sh "some scripts ${SERVER_CREDENTIALS}"
                 
             }
         }
@@ -45,6 +66,7 @@ pipeline {
            stage ("validation") {
             steps {
                 echo 'validation the application'
+                echo "deployed by ${params.deployerName}"
             }
         }
     }
