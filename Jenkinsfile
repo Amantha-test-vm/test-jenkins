@@ -1,10 +1,10 @@
 pipeline {
     agent any 
 
-    environment {
-        NEW_VERSION = '1.0.1'
-        SERVER_CREDENTIALS = credentpials('server-user-cred')
-    }
+    // environment {
+    //     NEW_VERSION = '1.0.1'
+    //     SERVER_CREDENTIALS = credentpials('server-user-cred')
+    // }
 
     // tools {
     //     // maven 'Maven'
@@ -32,39 +32,30 @@ pipeline {
             steps {
                 // sh 'npm install'
                 echo 'building the application'
-                sh 'maven install'
+                // sh 'maven install'
             }
         }
 
-           stage ("test") {
+        stage ("test") {
+            steps {
+                    echo 'testing the application'
+                    echo '2'
+            }
 
-            //    when {
-            //        expression {
-            //            BRANCH_NAME == 'stage'
-            //        }
-
-                   stage {
-                       echo 'This is srtage branch'
-                       echo '1'
-                   }
+            // when {
+            //         expression {
+            //             params.executeTest == true
+            //         }   
+            // }
 
             steps {
-                echo 'testing the application'
-                echo '2'
-            }
-
-            when {
-                expression {
-                    params.executeTest == true
-                }
-            }
-
-            steps {
-                echo 'npm install\n Installing npm \n....................\n ................'
-            }
+                    echo 'npm install\n Installing npm \n....................\n ................'
+            }   
         }
 
-           stage ("deploy") {
+
+        stage ("deploy") {
+
             steps {
                 echo 'deploying the application'
                 echo "Deploying with ${SERVER_CREDENTIALS}"
@@ -73,13 +64,16 @@ pipeline {
             }
         }
 
-           stage ("validation") {
+        stage ("validation") {
             steps {
                 echo 'validation the application'
                 echo "deployed by ${params.deployerName}"
             }
         }
     }
+
+
+
 
     post {
         always {
