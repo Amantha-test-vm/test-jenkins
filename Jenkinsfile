@@ -43,7 +43,7 @@ pipeline {
             //            BRANCH_NAME == 'stage'
             //        }
 
-                   stage {
+                   steps {
                        echo 'This is srtage branch'
                        echo '1'
                    }
