@@ -13,7 +13,7 @@ pipeline {
     // }
 
     parameters {
-        string(deployerName:'Admin', description: 'this is a parameter')
+        string(name:'Admin', description: 'this is a parameter')
         choice(name: 'VERSION',choices : ['1.0.1', '1.0.2', '1.0.3', '1.0.4']) //this will act like build with parameters
         booleanParam(name: 'executeTest' , defultValue: true, description: '')
     }
